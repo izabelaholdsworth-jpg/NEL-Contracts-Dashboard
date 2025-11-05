@@ -4,15 +4,16 @@ import streamlit as st
 @st.cache_data
 def load_data():
     try:
-        # Load Excel file from repo, using correct sheet name
-        df = pd.read_excel("NEL_Main_Enriched_Output.xlsx", sheet_name="Sheet1", engine="openpyxl")
-        st.success("✅ Data loaded successfully")
+        # Load the correct file and main sheet
+        df = pd.read_excel("NEL_Main_Enriched_Output.xlsx", sheet_name="merged_data", engine="openpyxl")
+        st.success("✅ Loaded 'merged_data' from NEL_Main_Enriched_Output.xlsx successfully.")
         return df
     except Exception as e:
         st.error(f"❌ Error loading Excel file: {e}")
         raise e
 
 df = load_data()
+
 
 st.title("💼 NEL Contract & Provider Explorer")
 
