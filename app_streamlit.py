@@ -7,7 +7,7 @@ st.set_page_config(page_title="NEL Contract & Provider Explorer", layout="wide")
 # ---------- LOAD DATA ----------
 @st.cache_data
 def load_data():
-    path = r"C:\Users\izabe\OneDrive\Desktop\NEL_Contract_Data\NEL_Main_Enriched_Output.xlsx"
+    path = pd.read_excel("NEL_Main_Enriched_Output.xlsx")
     df = pd.read_excel(path, sheet_name="merged_data")
     return df
 
