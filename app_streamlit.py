@@ -1,15 +1,16 @@
 import pandas as pd
 import streamlit as st
 
-# ---------- CONFIG ----------
-st.set_page_config(page_title="NEL Contract & Provider Explorer", layout="wide")
-
-# ---------- LOAD DATA ----------
 @st.cache_data
 def load_data():
-    path = pd.read_excel("NEL_Main_Enriched_Output.xlsx")
-    df = pd.read_excel(path, sheet_name="merged_data")
-    return df
+    try:
+        # Load Excel file from repo, using correct sheet name
+        df = pd.read_excel("NEL_Main_Enriched_Output.xlsx", sheet_name="Sheet1", engine="openpyxl")
+        st.success("✅ Data loaded successfully")
+        return df
+    except Exception as e:
+        st.error(f"❌ Error loading Excel file: {e}")
+        raise e
 
 df = load_data()
 
